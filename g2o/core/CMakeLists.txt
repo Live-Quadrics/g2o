@@ -38,9 +38,12 @@ robust_kernel_factory.cpp robust_kernel_factory.h
 g2o_core_api.h
 )
 
+FIND_PACKAGE(Eigen3 3.3 NO_MODULE)
+
 SET_TARGET_PROPERTIES(core PROPERTIES OUTPUT_NAME ${LIB_PREFIX}core)
 
-TARGET_LINK_LIBRARIES(core stuff)
+TARGET_LINK_LIBRARIES(core stuff ${EIGEN3_LIBS})
+target_include_directories(core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIRS})
 
 INSTALL(TARGETS core
   RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin

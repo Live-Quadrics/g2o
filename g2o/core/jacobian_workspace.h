@@ -36,8 +36,10 @@
 #include "g2o/config.h"
 #include "g2o_core_api.h"
 #include "hyper_graph.h"
+#include "eigen_types.h"
 
-namespace g2o {
+namespace g2o
+{
 
   struct OptimizableGraph;
 
@@ -51,46 +53,46 @@ namespace g2o {
    */
   class G2O_CORE_API JacobianWorkspace
   {
-    public:
-      typedef std::vector<VectorXD, Eigen::aligned_allocator<VectorXD> >      WorkspaceVector;
+  public:
+    typedef std::vector<VectorXD, Eigen::aligned_allocator<VectorXD>> WorkspaceVector;
 
-    public:
-      JacobianWorkspace();
-      ~JacobianWorkspace();
+  public:
+    JacobianWorkspace();
+    ~JacobianWorkspace();
 
-      /**
-       * allocate the workspace
-       */
-      bool allocate();
+    /**
+     * allocate the workspace
+     */
+    bool allocate();
 
-      /**
-       * update the maximum required workspace needed by taking into account this edge
-       */
-      void updateSize(const HyperGraph::Edge* e);
+    /**
+     * update the maximum required workspace needed by taking into account this edge
+     */
+    void updateSize(const HyperGraph::Edge *e);
 
-      /**
-       * update the required workspace by looking at a full graph
-       */
-      void updateSize(const OptimizableGraph& graph);
+    /**
+     * update the required workspace by looking at a full graph
+     */
+    void updateSize(const OptimizableGraph &graph);
 
-      /**
-       * manually update with the given parameters
-       */
-      void updateSize(int numVertices, int dimension);
+    /**
+     * manually update with the given parameters
+     */
+    void updateSize(int numVertices, int dimension);
 
-      /**
-       * return the workspace for a vertex in an edge
-       */
-      double* workspaceForVertex(int vertexIndex)
-      {
-        assert(vertexIndex >= 0 && (size_t)vertexIndex < _workspace.size() && "Index out of bounds");
-        return _workspace[vertexIndex].data();
-      }
+    /**
+     * return the workspace for a vertex in an edge
+     */
+    double *workspaceForVertex(int vertexIndex)
+    {
+      assert(vertexIndex >= 0 && (size_t)vertexIndex < _workspace.size() && "Index out of bounds");
+      return _workspace[vertexIndex].data();
+    }
 
-    protected:
-      WorkspaceVector _workspace;   ///< the memory pre-allocated for computing the Jacobians
-      int _maxNumVertices;          ///< the maximum number of vertices connected by a hyper-edge
-      int _maxDimension;            ///< the maximum dimension (number of elements) for a Jacobian
+  protected:
+    WorkspaceVector _workspace; ///< the memory pre-allocated for computing the Jacobians
+    int _maxNumVertices;        ///< the maximum number of vertices connected by a hyper-edge
+    int _maxDimension;          ///< the maximum dimension (number of elements) for a Jacobian
   };
 
 } // end namespace
