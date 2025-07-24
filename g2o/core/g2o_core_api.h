@@ -12,6 +12,7 @@
 
 #include "g2o/config.h"
 
+/*
 #ifdef _MSC_VER
 // We are using a Microsoft compiler:
 #ifdef G2O_SHARED_LIBS
@@ -25,8 +26,9 @@
 #endif
 
 #else
+*/
 // Not Microsoft compiler so set empty definition:
 #define G2O_CORE_API
 #endif
 
-#endif // G2O_CORE_API_H
+// #endif // G2O_CORE_API_H

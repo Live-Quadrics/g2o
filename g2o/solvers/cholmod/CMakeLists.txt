@@ -1,3 +1,7 @@
+set(CMAKE_CXX_STANDARD 17) 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF) # Recommended for stricter standard compliance
+
 if (NOT G2O_USE_CHOLMOD)
   return()
 endif()
@@ -8,7 +12,7 @@ add_library(solver_cholmod ${G2O_LIB_TYPE}
 )
 
 include_directories(${CHOLMOD_INCLUDE_DIR})
-
+message("FUCKING CHOLMOD INCLUDES: ${CHOLMOD_INCLUDE_DIR}")
 set_target_properties(solver_cholmod PROPERTIES OUTPUT_NAME ${LIB_PREFIX}solver_cholmod)
 if (APPLE)
   set_target_properties(solver_cholmod PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib")
@@ -16,6 +20,7 @@ endif()
 
 add_definitions(${BLAS_DEFINITIONS} ${LAPACK_DEFINITIONS})
 target_link_libraries(solver_cholmod ${CHOLMOD_LIBRARIES} ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES} core)
+target_include_directories(solver_cholmod PUBLIC ${CHOLMOD_INCLUDE_DIR})
 
 install(TARGETS solver_cholmod
   EXPORT ${G2O_TARGETS_EXPORT_NAME}

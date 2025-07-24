@@ -1,3 +1,7 @@
+set(CMAKE_CXX_STANDARD 17) 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF) # Recommended for stricter standard compliance
+
 add_library(solver_dense ${G2O_LIB_TYPE}
   solver_dense.cpp linear_solver_dense.h
 )

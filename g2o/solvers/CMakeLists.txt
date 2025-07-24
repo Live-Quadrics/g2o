@@ -1,19 +1,23 @@
-add_subdirectory(pcg)
-add_subdirectory(dense)
-add_subdirectory(structure_only)
+set(CMAKE_CXX_STANDARD 17) 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF) # Recommended for stricter standard compliance
 
-if(CSPARSE_FOUND)
-  add_subdirectory(csparse)
-  add_subdirectory(slam2d_linear)
-endif()
+ADD_SUBDIRECTORY(pcg)
+ADD_SUBDIRECTORY(dense)
+ADD_SUBDIRECTORY(structure_only)
 
-if(CHOLMOD_FOUND)
-  add_subdirectory(cholmod)
-endif(CHOLMOD_FOUND)
+IF(CSPARSE_FOUND)
+  ADD_SUBDIRECTORY(csparse)
+  ADD_SUBDIRECTORY(slam2d_linear)
+ENDIF()
+
+IF(CHOLMOD_FOUND)
+  ADD_SUBDIRECTORY(cholmod)
+ENDIF(CHOLMOD_FOUND)
 
 # Sparse Module of Eigen is stable starting from 3.1
-if (DEFINED EIGEN3_VERSION)
-  if(${EIGEN3_VERSION} VERSION_GREATER "3.1.0" OR ${EIGEN3_VERSION} VERSION_EQUAL "3.1.0")
-    add_subdirectory(eigen)
-  endif()
-endif()
+IF (DEFINED EIGEN3_VERSION)
+  IF(${EIGEN3_VERSION} VERSION_GREATER "3.1.0" OR ${EIGEN3_VERSION} VERSION_EQUAL "3.1.0")
+    ADD_SUBDIRECTORY(eigen)
+  ENDIF()
+ENDIF()

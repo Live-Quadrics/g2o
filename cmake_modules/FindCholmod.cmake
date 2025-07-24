@@ -42,8 +42,10 @@ if(CHOLMOD_LIBRARIES)
   find_library(COLAMD_LIBRARY NAMES colamd libcolamd PATHS ${CHOLMOD_LIBDIR} $ENV{CHOLMODDIR} ${LIB_INSTALL_DIR})
   if (COLAMD_LIBRARY)
     set(CHOLMOD_LIBRARIES ${CHOLMOD_LIBRARIES} ${COLAMD_LIBRARY})
+    message("CHOLMOD LIBRARIES: ${CHOLMOD_LIBRARIES}")
   else ()
     set(CHOLMOD_LIBRARIES FALSE)
+    message("CHOLMOD NOT FOUND!")
   endif ()
 
 endif(CHOLMOD_LIBRARIES)
@@ -90,5 +92,5 @@ endif(CHOLMOD_LIBRARIES)
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(CHOLMOD DEFAULT_MSG
                                   CHOLMOD_INCLUDE_DIR CHOLMOD_LIBRARIES)
-
+message("CHOLMOD_INCLUDE_DIR: ${CHOLMOD_INCLUDE_DIR}")
 mark_as_advanced(CHOLMOD_LIBRARIES)

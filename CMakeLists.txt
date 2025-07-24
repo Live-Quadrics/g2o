@@ -5,6 +5,7 @@ project(g2o)
 
 include(CPack)
 
+
 # The library prefix
 set(LIB_PREFIX g2o_)
 
@@ -345,8 +346,12 @@ if(MSVC)
 endif(MSVC)
 
 # C++11 support
-set(CMAKE_CXX_STANDARD 11)
+#set(CMAKE_CXX_STANDARD 11)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17) 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_CXX_EXTENSIONS OFF) # Recommended for stricter standard compliance
+
 
 # specifying compiler flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${g2o_CXX_FLAGS}")
@@ -368,6 +373,8 @@ include_directories(${g2o_SOURCE_DIR} ${PROJECT_BINARY_DIR})
 # Generate config.h
 set(G2O_OPENGL_FOUND ${OPENGL_FOUND})
 set(G2O_HAVE_CHOLMOD ${CHOLMOD_FOUND})
+message("CHOLMOD Found: ${CHOLMOD_FOUND}")
+include_directories(${CHOLMOD_INCLUDE_DIR})
 set(G2O_HAVE_CSPARSE ${CSPARSE_FOUND})
 set(G2O_SHARED_LIBS ${BUILD_SHARED_LIBS})
 set(G2O_LGPL_SHARED_LIBS ${BUILD_LGPL_SHARED_LIBS})

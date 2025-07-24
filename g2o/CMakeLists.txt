@@ -1,4 +1,8 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.7)
+
+set(CMAKE_CXX_STANDARD 17) 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF) # Recommended for stricter standard compliance
 
 add_subdirectory(stuff)
 add_subdirectory(core)
@@ -14,15 +18,15 @@ add_subdirectory(types)
 add_subdirectory(solvers)
 
 # Examples
-if(G2O_BUILD_EXAMPLES)
-  add_subdirectory(examples)
-endif(G2O_BUILD_EXAMPLES)
+#if(G2O_BUILD_EXAMPLES)
+#  add_subdirectory(examples)
+#endif(G2O_BUILD_EXAMPLES)
 
-if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/playground")
-  # Playground
-  option (G2O_BUILD_PLAYGROUND "Build g2o playground" ON)
-  if (G2O_BUILD_PLAYGROUND)
-    message(STATUS "building playground")
-    add_subdirectory(playground)
-  endif()
-endif()
+#if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/playground")
+#  # Playground
+#  option (G2O_BUILD_PLAYGROUND "Build g2o playground" ON)
+#  if (G2O_BUILD_PLAYGROUND)
+#    message(STATUS "building playground")
+#    add_subdirectory(playground)
+#  endif()
+#endif()

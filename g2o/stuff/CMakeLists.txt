@@ -1,3 +1,7 @@
+set(CMAKE_CXX_STANDARD 17) 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF) # Recommended for stricter standard compliance
+
 add_library(stuff ${G2O_LIB_TYPE}
   filesys_tools.h    string_tools.h
   color_macros.h     macros.h         timeutil.cpp
